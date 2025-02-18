@@ -1,4 +1,4 @@
-<!-- Team Leader Dashboard with Embedded Voting and Team Progress -->
+<!-- Team Leader Dashboard with Responsive Design -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +7,23 @@
     <title>Team Leader Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
         .container {
             display: flex;
+            flex: 1;
         }
         .sidebar {
-            width: 220px;
+            width: 250px;
             background: #333;
             color: white;
             padding-top: 20px;
@@ -19,6 +31,7 @@
             position: fixed;
             left: 0;
             top: 0;
+            overflow-y: auto;
         }
         .sidebar ul {
             list-style: none;
@@ -35,9 +48,9 @@
             background: #575757;
         }
         .main-content {
-            margin-left: 240px;
+            margin-left: 250px;
             padding: 20px;
-            width: calc(100% - 240px);
+            width: calc(100% - 250px);
         }
         .hidden {
             display: none;
@@ -48,7 +61,7 @@
             border-radius: 5px;
             margin-top: 20px;
         }
-        select {
+        select, button {
             display: block;
             width: 100%;
             margin-bottom: 10px;
@@ -61,18 +74,40 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%;
         }
         button:hover {
             background: #45a049;
         }
+        @media screen and (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
     </style>
     <script>
-        function showVoting() {
-            document.getElementById('votingSection').style.display = 'block';
-        }
-        function showProgress() {
-            document.getElementById('progressSection').style.display = 'block';
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
         }
     </script>
 </head>
@@ -81,18 +116,19 @@
         <div class="sidebar">
             <h2>Team Leader</h2>
             <ul>
-                <li>Dashboard</li>
-                <li onclick="showVoting()">Health Check</li>
-                <li onclick="showProgress()">Team Progress</li>
-                <li>View All Teams</li>
-                <li>Choose Specific Team</li>
+                <li onclick="showSection('dashboard')">Dashboard</li>
+                <li onclick="showSection('votingSection')">Health Check</li>
+                <li onclick="showSection('progressSection')">Team Progress</li>
+                <li onclick="showSection('viewTeams')">View All Teams</li>
+                <li onclick="showSection('specificTeam')">Choose Specific Team</li>
             </ul>
         </div>
         <div class="main-content">
-            <h1>Welcome, Team Leader</h1>
-            <p>Manage Team Health and Progress</p>
-            
-            <div id="votingSection" class="voting-form hidden">
+            <div id="dashboard" class="content-section">
+                <h1>Welcome, Team Leader</h1>
+                <p>Manage Team Health and Progress</p>
+            </div>
+            <div id="votingSection" class="content-section hidden">
                 <h2>Vote on the following topics:</h2>
                 <form>
                     <label>Select Team:</label>
@@ -116,8 +152,7 @@
                     <button type="submit">Save Vote</button>
                 </form>
             </div>
-            
-            <div id="progressSection" class="team-progress hidden">
+            <div id="progressSection" class="content-section hidden">
                 <h2>Team Progress Over Time</h2>
                 <label>Select Team:</label>
                 <select>
