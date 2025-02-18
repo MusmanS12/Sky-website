@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Lead Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            border-bottom: 2px solid gray;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            width: 150px;
+            text-align: left;
+            z-index: 1000;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .dropdown-menu a:hover {
+            background: #f4f4f4;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 60px;
+            bottom: 0;
+            width: 220px;
+            background: #333;
+            color: white;
+            padding-top: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            border-bottom: 1px solid #444;
+            transition: background 0.3s;
+        }
+        .sidebar ul li:hover {
+            background: #575757;
+        }
+        .main-content {
+            margin-left: 240px;
+            margin-top: 80px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            text-align: center;
+            padding: 10px;
+            border-top: 2px solid gray;
+            box-sizing: border-box;
+        }
+        .footer img {
+            height: 40px;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdownMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-icon')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h2>Department Lead Portal</h2>
+        <div class="user-menu">
+            <img src="user-icon.png" alt="User" class="user-icon" onclick="toggleMenu()">
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="profile.html">Profile</a>
+                <a href="logout.html">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <h2>Department Lead</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>All Teams Overview</li>
+            <li>Admin Panel</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Welcome, Department Lead</h1>
+        <p>Team Progress Overview</p>
+        <button>View Reports</button>
+    </div>
+    <div class="footer">
+        <img src="sky-logo.png" alt="Sky Logo">
+        <p>&copy; 2025 University of Westminster</p>
+    </div>
+</body>
+</html>

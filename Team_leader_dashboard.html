@@ -1,0 +1,133 @@
+<!-- Team Leader Dashboard with Embedded Voting and Team Progress -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Leader Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 220px;
+            background: #333;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            border-bottom: 1px solid #444;
+            transition: background 0.3s;
+        }
+        .sidebar ul li:hover {
+            background: #575757;
+        }
+        .main-content {
+            margin-left: 240px;
+            padding: 20px;
+            width: calc(100% - 240px);
+        }
+        .hidden {
+            display: none;
+        }
+        .voting-form, .team-progress {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        select {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+    <script>
+        function showVoting() {
+            document.getElementById('votingSection').style.display = 'block';
+        }
+        function showProgress() {
+            document.getElementById('progressSection').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Team Leader</h2>
+            <ul>
+                <li>Dashboard</li>
+                <li onclick="showVoting()">Health Check</li>
+                <li onclick="showProgress()">Team Progress</li>
+                <li>View All Teams</li>
+                <li>Choose Specific Team</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>Welcome, Team Leader</h1>
+            <p>Manage Team Health and Progress</p>
+            
+            <div id="votingSection" class="voting-form hidden">
+                <h2>Vote on the following topics:</h2>
+                <form>
+                    <label>Select Team:</label>
+                    <select>
+                        <option value="team1">Team 1</option>
+                        <option value="team2">Team 2</option>
+                        <option value="team3">Team 3</option>
+                    </select>
+                    <label>Support:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Teamwork:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <button type="submit">Save Vote</button>
+                </form>
+            </div>
+            
+            <div id="progressSection" class="team-progress hidden">
+                <h2>Team Progress Over Time</h2>
+                <label>Select Team:</label>
+                <select>
+                    <option value="team1">Team 1</option>
+                    <option value="team2">Team 2</option>
+                    <option value="team3">Team 3</option>
+                </select>
+                <p>Progress Graph or Data Table Will Be Shown Here</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

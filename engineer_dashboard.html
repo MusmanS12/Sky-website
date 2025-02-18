@@ -1,0 +1,163 @@
+<!-- Engineer Dashboard with Embedded Voting -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 220px;
+            background: #333;
+            color: white;
+            padding-top: 20px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            border-bottom: 1px solid #444;
+            transition: background 0.3s;
+        }
+        .sidebar ul li:hover {
+            background: #575757;
+        }
+        .main-content {
+            margin-left: 240px;
+            padding: 20px;
+            width: calc(100% - 240px);
+        }
+        .voting-form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none; /* Hidden initially */
+        }
+        select {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+    <script>
+        function showVoting() {
+            document.getElementById('votingSection').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Engineer</h2>
+            <ul>
+                <li>Dashboard</li>
+                <li onclick="showVoting()">Health Check</li>
+                <li>Daily Task</li>
+                <li>Completed Task</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>Welcome, Engineer</h1>
+            <p>Health Check Voting System</p>
+            <div id="votingSection" class="voting-form">
+                <h2>Vote on the following topics:</h2>
+                <form>
+                    <label>Support:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Teamwork:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Pawns or Players:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Mission:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Health of Codebase:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Suitable Process:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Delivering Value:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Learning:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Speed:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Easy to Release:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Fun:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <button type="submit">Save Vote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

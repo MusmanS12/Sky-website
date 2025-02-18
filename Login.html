@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Health Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, orange, pink, purple, blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .header, .footer {
+            position: absolute;
+            width: 100%;
+            background: white;
+            padding: 10px 0;
+            text-align: center;
+            border-bottom: 2px solid gray;
+        }
+        .header {
+            top: 0;
+        }
+        .footer {
+            bottom: 0;
+            border-top: 2px solid gray;
+            border-bottom: none;
+        }
+        .header img, .footer img {
+            height: 40px;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            width: 80%;
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            opacity: 0.7;
+        }
+        .login-container {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-left: 40px; /* Added gap between image and login form */
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+        input, select {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #ff4f7b;
+        }
+        .forgot {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .forgot:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="images\sky-logo.png" alt="Sky Logo">
+    </div>
+    <div class="content">
+        <div class="image-container">
+            <img src="images\Health-check.png" alt="Health Check">
+        </div>
+        <div class="login-container">
+            <h2>Login Form</h2>
+            <label for="role">Select Role:</label>
+            <select id="role">
+                <option value="engineer">Engineer</option>
+                <option value="department-lead">Department Lead</option>
+            </select>
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            <a href="#" class="forgot">Forgotten Password?</a>
+            <button class="login-btn">Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="images\sky-logo.png" alt="Sky Logo">
+        <p>&copy; 2025 University of Westminster</p>
+    </div>
+
+    <script>
+        document.querySelector('.login-btn').addEventListener('click', function() {
+            let role = document.getElementById('role').value;
+            if (role === 'engineer') {
+                window.location.href = 'engineer_dashboard.html';
+            } else {
+                window.location.href = 'department_dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

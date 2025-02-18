@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Health Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, orange, pink, purple, blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-y: auto;
+        }
+        .header, .footer {
+            width: 100%;
+            background: white;
+            padding: 10px 0;
+            text-align: center;
+            border-bottom: 2px solid gray;
+            position: fixed;
+            left: 0;
+            z-index: 1000;
+        }
+        .header {
+            top: 0;
+        }
+        .footer {
+            bottom: 0;
+            border-top: 2px solid gray;
+            border-bottom: none;
+            padding-bottom: 10px;
+        }
+        .header img, .footer img {
+            height: 40px;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            width: 80%;
+            min-height: 100vh;
+            position: relative;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('health-check.png') no-repeat center center/cover;
+            opacity: 0.2;
+        }
+        .signup-container {
+            position: relative;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 400px;
+            margin-top: 1px;
+            margin-bottom: 50px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+        input, select {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            font-size: 16px;
+        }
+        input[type="text"]::placeholder {
+            color: gray;
+        }
+        button {
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #ff4f7b;
+        }
+        .separator {
+            border-top: 2px solid gray;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="images\sky-logo.png" alt="Sky Logo">
+    </div>
+    <div class="content">
+        <div class="background-image"></div>
+        <div class="signup-container">
+            <h2>Sign Up</h2>
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" placeholder="Enter your full name">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" placeholder="07">
+            <label for="interest">Interest:</label>
+            <input type="text" id="interest" placeholder="Enter your interest">
+            <label for="role">Role:</label>
+            <select id="role">
+                <option value="engineer">Engineer</option>
+                <option value="department-lead">Department Lead</option>
+            </select>
+            
+            <div class="separator"></div>
+            <h3>Home Address</h3>
+            <label for="address1">Address Line 1:</label>
+            <input type="text" id="address1" placeholder="Mandatory" required >
+            <label for="address2">Address Line 2:</label>
+            <input type="text" id="address2" placeholder="Optional">
+            <label for="address3">Address Line 3:</label>
+            <input type="text" id="address3" placeholder="Optional">
+            <label for="town">Town/City ():</label>
+            <input type="text" id="town" placeholder="Mandatory" required>
+            <label for="postcode">Postcode :</label>
+            <input type="text" id="postcode" placeholder="Mandatory" required>
+            <label for="country">Country:</label>
+            <input type="text" id="country" placeholder="Mandatory" required>
+            
+            <div class="separator"></div>
+            <label>
+                <input type="checkbox" id="terms"> Do you accept terms and conditions?
+            </label>
+            <label>
+                <input type="checkbox" id="updates"> Do you wish to receive everyday updates?
+            </label>
+            
+            <a href="Login.html"> <button class="signup-btn">Sign Up</button></a>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="images\sky-logo.png" alt="Sky Logo">
+        <p>&copy; 2025 University of Westminster</p>
+    </div>
+</body>
+</html>
