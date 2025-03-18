@@ -1,4 +1,4 @@
-<!-- Engineer Dashboard with Embedded Voting -->
+<!-- Engineer Dashboard with Fixed Sidebar Styling -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,18 +7,53 @@
     <title>Engineer Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .container {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(to right, #ff9966, #6600cc);
+            color: black;
         }
         .sidebar {
-            width: 220px;
-            background: #333;
+            width: 280px;
+            background: #2d1a4a;
             color: white;
             padding-top: 20px;
             height: 100vh;
             position: fixed;
-            left: 0;
+            left: -280px;
             top: 0;
+            transition: left 0.3s ease-in-out;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .toggle-btn {
+            position:fixed;
+            left: 10px;
+            top: 10px;
+            background: #2d1a4a;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .sidebar h2 {
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            background: #401b65;
+            margin-bottom: 10px;
         }
         .sidebar ul {
             list-style: none;
@@ -27,68 +62,89 @@
         .sidebar ul li {
             padding: 15px;
             cursor: pointer;
-            text-align: center;
-            border-bottom: 1px solid #444;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #472e67;
             transition: background 0.3s;
+            font-size: 16px;
         }
-        .sidebar ul li:hover {
-            background: #575757;
+        .sidebar ul li:hover, .sidebar ul li.active {
+            background: #573c89;
+            color: white;
         }
         .main-content {
-            margin-left: 240px;
+            margin-left: 0;
             padding: 20px;
-            width: calc(100% - 240px);
-        }
-        .voting-form {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-            display: none; /* Hidden initially */
-        }
-        select {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 5px;
-        }
-        button {
-            background: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            transition: margin-left 0.3s ease-in-out;
             width: 100%;
         }
-        button:hover {
-            background: #45a049;
+        .sidebar.active + .main-content {
+            margin-left: 280px;
+        }
+        .hidden {
+            display: none;
+        }
+        .content-section {
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            margin: 60px auto 20px;
+        }
+        .content-section h1, .content-section p {
+            text-align: center;
+        }
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                left: -280px;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .sidebar.active + .main-content {
+                margin-left: 0;
+            }
         }
     </style>
     <script>
-        function showVoting() {
-            document.getElementById('votingSection').style.display = 'block';
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h2>Engineer</h2>
-            <ul>
-                <li>Dashboard</li>
-                <li onclick="showVoting()">Health Check</li>
-                <li>Daily Task</li>
-                <li>Completed Task</li>
-            </ul>
-        </div>
-        <div class="main-content">
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar">
+        <h2>Engineer</h2>
+        <ul>
+            <li onclick="showSection('dashboard')">Dashboard</li>
+            <li onclick="showSection('votingSection')">Health Check</li>
+            <li onclick="showSection('tasksSection')">Daily Tasks</li>
+            <li onclick="showSection('completedTasks')">Completed Tasks</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div id="dashboard" class="content-section">
             <h1>Welcome, Engineer</h1>
-            <p>Health Check Voting System</p>
-            <div id="votingSection" class="voting-form">
-                <h2>Vote on the following topics:</h2>
-                <form>
-                    <label>Support:</label>
+            <p>Manage your daily tasks and health check</p>
+        </div>
+        <div id="votingSection" class="content-section hidden">
+            <h2>Health Check Voting</h2>
+            <form>
+                <label>Support:</label>
                     <select>
                         <option value="green">Green</option>
                         <option value="amber">Amber</option>
@@ -154,9 +210,16 @@
                         <option value="amber">Amber</option>
                         <option value="red">Red</option>
                     </select>
-                    <button type="submit">Save Vote</button>
-                </form>
-            </div>
+                <button type="submit">Save Vote</button>
+            </form>
+        </div>
+        <div id="tasksSection" class="content-section hidden">
+            <h2>Daily Tasks</h2>
+            <p>Here you can manage your daily tasks.</p>
+        </div>
+        <div id="completedTasks" class="content-section hidden">
+            <h2>Completed Tasks</h2>
+            <p>Review your completed tasks.</p>
         </div>
     </div>
 </body>

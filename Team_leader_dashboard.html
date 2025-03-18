@@ -1,4 +1,4 @@
-<!-- Team Leader Dashboard with Responsive Design -->
+<!-- Team Leader Dashboard with Fixed Sidebar Styling -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,21 +17,43 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-        }
-        .container {
-            display: flex;
-            flex: 1;
+            background: linear-gradient(to right, #ff9966, #6600cc);
+            color: black;
         }
         .sidebar {
-            width: 250px;
-            background: #333;
+            width: 280px;
+            background: #2d1a4a;
             color: white;
             padding-top: 20px;
             height: 100vh;
             position: fixed;
-            left: 0;
+            left: -280px;
             top: 0;
+            transition: left 0.3s ease-in-out;
             overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .toggle-btn {
+            position:fixed;
+            left: 10px;
+            top: 10px;
+            background: #2d1a4a;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .sidebar h2 {
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            background: #401b65;
+            margin-bottom: 10px;
         }
         .sidebar ul {
             list-style: none;
@@ -40,104 +62,95 @@
         .sidebar ul li {
             padding: 15px;
             cursor: pointer;
-            text-align: center;
-            border-bottom: 1px solid #444;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #472e67;
             transition: background 0.3s;
+            font-size: 16px;
         }
-        .sidebar ul li:hover {
-            background: #575757;
+        .sidebar ul li:hover, .sidebar ul li.active {
+            background: #573c89;
+            color: white;
         }
         .main-content {
-            margin-left: 250px;
+            margin-left: 0;
             padding: 20px;
-            width: calc(100% - 250px);
+            transition: margin-left 0.3s ease-in-out;
+            width: 100%;
+        }
+        .sidebar.active + .main-content {
+            margin-left: 280px;
         }
         .hidden {
             display: none;
         }
-        .voting-form, .team-progress {
-            background: #f9f9f9;
+        .content-section {
             padding: 20px;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            margin: 60px auto 20px;
         }
-        select, button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 5px;
-        }
-        button {
-            background: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #45a049;
-        }
-        @media screen and (max-width: 1024px) {
-            .sidebar {
-                width: 200px;
-            }
-            .main-content {
-                margin-left: 200px;
-                width: calc(100% - 200px);
-            }
+        .content-section h1, .content-section p {
+            text-align: center;
         }
         @media screen and (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+                left: -280px;
+            }
+            .sidebar.active {
+                left: 0;
             }
             .main-content {
                 margin-left: 0;
-                width: 100%;
+            }
+            .sidebar.active + .main-content {
+                margin-left: 0;
             }
         }
     </style>
     <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
         function showSection(sectionId) {
             document.querySelectorAll('.content-section').forEach(section => {
                 section.style.display = 'none';
             });
             document.getElementById(sectionId).style.display = 'block';
+            
+            document.querySelectorAll('.sidebar ul li').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h2>Team Leader</h2>
-            <ul>
-                <li onclick="showSection('dashboard')">Dashboard</li>
-                <li onclick="showSection('votingSection')">Health Check</li>
-                <li onclick="showSection('progressSection')">Team Progress</li>
-                <li onclick="showSection('viewTeams')">View All Teams</li>
-                <li onclick="showSection('specificTeam')">Choose Specific Team</li>
-            </ul>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar">
+        <h2>Team Leader</h2>
+        <ul>
+            <li onclick="showSection('dashboard')">Dashboard</li>
+            <li onclick="showSection('votingSection')">Health Check</li>
+            <li onclick="showSection('progressSection')">Team Progress</li>
+            <li onclick="showSection('viewTeams')">View All Teams</li>
+            <li onclick="showSection('specificTeam')">Choose Specific Team</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div id="dashboard" class="content-section">
+            <h1>Welcome, Team Leader</h1>
+            <p>Manage Team Health and Progress</p>
         </div>
-        <div class="main-content">
-            <div id="dashboard" class="content-section">
-                <h1>Welcome, Team Leader</h1>
-                <p>Manage Team Health and Progress</p>
-            </div>
-            <div id="votingSection" class="content-section hidden">
-                <h2>Vote on the following topics:</h2>
-                <form>
-                    <label>Select Team:</label>
-                    <select>
-                        <option value="team1">Team 1</option>
-                        <option value="team2">Team 2</option>
-                        <option value="team3">Team 3</option>
-                    </select>
-                    <label>Support:</label>
+        <div id="votingSection" class="content-section hidden">
+            <h2>Vote on the following topics:</h2>
+            <form>
+                <label>Support:</label>
                     <select>
                         <option value="green">Green</option>
                         <option value="amber">Amber</option>
@@ -149,19 +162,72 @@
                         <option value="amber">Amber</option>
                         <option value="red">Red</option>
                     </select>
-                    <button type="submit">Save Vote</button>
-                </form>
-            </div>
-            <div id="progressSection" class="content-section hidden">
-                <h2>Team Progress Over Time</h2>
-                <label>Select Team:</label>
-                <select>
-                    <option value="team1">Team 1</option>
-                    <option value="team2">Team 2</option>
-                    <option value="team3">Team 3</option>
-                </select>
-                <p>Progress Graph or Data Table Will Be Shown Here</p>
-            </div>
+                    <label>Pawns or Players:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Mission:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Health of Codebase:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Suitable Process:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Delivering Value:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Learning:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Speed:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Easy to Release:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                    <label>Fun:</label>
+                    <select>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber</option>
+                        <option value="red">Red</option>
+                    </select>
+                <button type="submit">Save Vote</button>
+            </form>
+        </div>
+        <div id="progressSection" class="content-section hidden">
+            <h2>Team Progress Over Time</h2>
+            <label>Select Team:</label>
+            <select>
+                <option value="team1">Team 1</option>
+                <option value="team2">Team 2</option>
+                <option value="team3">Team 3</option>
+            </select>
+            <p>Progress Graph or Data Table Will Be Shown Here</p>
         </div>
     </div>
 </body>
