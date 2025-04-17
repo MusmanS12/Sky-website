@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Users - Sky Health Check</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9966, #6600cc);
+      margin: 0;
+      color: black;
+    }
+    .header, .footer {
+      height: 10px;
+      background: linear-gradient(to right, orange, red, purple, blue);
+    }
+    .logo-bar {
+      background: white;
+      text-align: center;
+      padding: 10px;
+    }
+    .logo-bar img {
+      height: 40px;
+    }
+    .container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #2d1a4a;
+      color: white;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select, button {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #2d1a4a;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #402a65;
+    }
+  </style>
+</head>
+<body>
+  <div class="header"></div>
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+  <div class="container">
+    <h2>Manage Users</h2>
+
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Full Name</th><th>Email</th><th>Role</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Jane Smith</td><td>jane@example.com</td><td>Engineer</td><td>Active</td></tr>
+        <tr><td>2</td><td>John Doe</td><td>john@example.com</td><td>Team Leader</td><td>Active</td></tr>
+      </tbody>
+    </table>
+
+    <form>
+      <h3>Add New User</h3>
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="role">Role:</label>
+      <select id="role" name="role">
+        <option value="engineer">Engineer</option>
+        <option value="team_leader">Team Leader</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Add User</button>
+    </form>
+  </div>
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+  <div class="footer"></div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualisation - Sky Health Check</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9966, #6600cc);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: black;
+    }
+    .header, .footer {
+      height: 10px;
+      background: linear-gradient(to right, orange, red, purple, blue);
+    }
+    .logo-bar {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .logo-bar img {
+      height: 40px;
+    }
+    .container {
+      flex: 1;
+      padding: 40px;
+    }
+    .chart-section {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      max-width: 900px;
+      margin: auto;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header"></div>
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+
+  <div class="container">
+    <div class="chart-section">
+      <h2 style="text-align:center;">Team Voting Breakdown</h2>
+      <canvas id="voteChart"></canvas>
+    </div>
+  </div>
+
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+  <div class="footer"></div>
+
+  <script>
+    const ctx = document.getElementById('voteChart').getContext('2d');
+    const voteChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Support', 'Teamwork', 'Fun', 'Mission'],
+        datasets: [
+          {
+            label: 'Green',
+            data: [12, 19, 14, 9],
+            backgroundColor: 'green'
+          },
+          {
+            label: 'Amber',
+            data: [5, 7, 6, 10],
+            backgroundColor: 'orange'
+          },
+          {
+            label: 'Red',
+            data: [3, 4, 2, 6],
+            backgroundColor: 'red'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Sky Health Check</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9966, #6600cc);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: black;
+    }
+    .header, .footer {
+      height: 10px;
+      background: linear-gradient(to right, orange, red, purple, blue);
+    }
+    .logo-bar {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .logo-bar img {
+      height: 40px;
+    }
+    .admin-panel {
+      flex: 1;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    .admin-panel h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .admin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .admin-actions a {
+      text-decoration: none;
+      padding: 15px 25px;
+      background: #2d1a4a;
+      color: white;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .admin-actions a:hover {
+      background: #402a65;
+    }
+  </style>
+</head>
+<body>
+  <div class="header"></div>
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo" />
+  </div>
+
+  <div class="admin-panel">
+    <h2>Admin Dashboard</h2>
+    <div class="admin-actions">
+      <a href="manage_users.html">Manage Users</a>
+      <a href="manage_teams.html">Manage Teams</a>
+      <a href="manage_sessions.html">Manage Sessions</a>
+      <a href="manage_cards.html">Manage Cards</a>
+    </div>
+  </div>
+
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo" />
+  </div>
+  <div class="footer"></div>
+</body>
+</html>
