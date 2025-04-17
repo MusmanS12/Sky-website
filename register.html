@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - Sky Health Check</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, orange, purple, pink, #ff9966);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .header, .footer {
+      height: 10px;
+      width: 100%;
+      background: linear-gradient(to right, orange, red, purple, blue);
+    }
+    .logo-bar {
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0;
+    }
+    .logo-bar img {
+      height: 40px;
+    }
+    .register-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .register-box {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .register-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-section {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2d1a4a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #402a65;
+    }
+  </style>
+</head>
+<body>
+  <div class="header"></div>
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+
+  <div class="register-container">
+    <div class="register-box">
+      <h2>Create an Account</h2>
+      <form>
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="07..." required>
+
+        <label for="interest">Interest:</label>
+        <input type="text" id="interest" name="interest">
+
+        <hr class="form-section">
+        <h3>Home Address</h3>
+        <label for="address1">Address Line 1:</label>
+        <input type="text" id="address1" name="address1" required>
+
+        <label for="address2">Address Line 2:</label>
+        <input type="text" id="address2" name="address2">
+
+        <label for="address3">Address Line 3:</label>
+        <input type="text" id="address3" name="address3">
+
+        <label for="city">Town/City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="postcode">Postcode:</label>
+        <input type="text" id="postcode" name="postcode" required>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required>
+
+        <hr class="form-section">
+        <label><input type="checkbox" name="terms" required> I accept the terms and conditions</label>
+        <label><input type="checkbox" name="updates"> I wish to receive everyday updates</label>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+  <div class="footer"></div>
+</body>
+</html>

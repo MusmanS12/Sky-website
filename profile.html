@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Sky Health Check</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile - Sky Health Check</title>
   <style>
     * {
       margin: 0;
@@ -12,14 +12,13 @@
     }
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, orange, purple, pink, #ff9966);
+      background: linear-gradient(to right, #ff9966, #6600cc);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
     .header, .footer {
       height: 10px;
-      width: 100%;
       background: linear-gradient(to right, orange, red, purple, blue);
     }
     .logo-bar {
@@ -33,49 +32,41 @@
       height: 40px;
     }
     .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 40px;
-      flex: 1;
-    }
-    .left-image {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 40px 20px;
     }
-    .left-image img {
-      width: 80%;
-      max-width: 400px;
-      opacity: 0.8;
-    }
-    .login-box {
-      flex: 1;
+    .profile-box {
       background: white;
       border-radius: 10px;
-      padding: 40px;
-      max-width: 400px;
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-    .login-box h2 {
-      margin-bottom: 20px;
+    .profile-box h2 {
       text-align: center;
+      margin-bottom: 20px;
     }
-    .login-box label {
+    label {
       display: block;
       margin: 10px 0 5px;
     }
-    .login-box select, .login-box input {
+    input {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
-    .login-box button {
-      width: 100%;
-      padding: 10px;
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    button {
+      padding: 10px 20px;
       background-color: #2d1a4a;
       color: white;
       border: none;
@@ -83,7 +74,7 @@
       font-size: 16px;
       cursor: pointer;
     }
-    .login-box button:hover {
+    button:hover {
       background-color: #402a65;
     }
   </style>
@@ -95,22 +86,25 @@
   </div>
 
   <div class="container">
-    <div class="left-image">
-      <img src="images/health-check.png" alt="Health Check">
-    </div>
-    <div class="login-box">
-      <h2>Login</h2>
+    <div class="profile-box">
+      <h2>My Profile</h2>
       <form>
-        <label for="role">Select Role:</label>
-        <select id="role" name="role">
-          <option value="engineer">Engineer</option>
-          <option value="team_leader">Team Leader</option>
-        </select>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" value="John Doe">
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" value="john.doe@example.com">
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" value="07123456789">
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+
+        <div class="button-row">
+          <button type="submit">Update Profile</button>
+          <button type="button" onclick="location.href='change-password.html'">Change Password</button>
+        </div>
       </form>
     </div>
   </div>

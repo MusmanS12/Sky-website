@@ -1,226 +1,218 @@
-<!-- Engineer Dashboard with Fixed Sidebar Styling -->
+<!-- Engineer Dashboard with Improved Professional Styling -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineer Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background: linear-gradient(to right, #ff9966, #6600cc);
-            color: black;
-        }
-        .sidebar {
-            width: 280px;
-            background: #2d1a4a;
-            color: white;
-            padding-top: 20px;
-            height: 100vh;
-            position: fixed;
-            left: -280px;
-            top: 0;
-            transition: left 0.3s ease-in-out;
-            overflow-y: auto;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-        }
-        .sidebar.active {
-            left: 0;
-        }
-        .toggle-btn {
-            position:fixed;
-            left: 10px;
-            top: 10px;
-            background: #2d1a4a;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            z-index: 1000;
-        }
-        .sidebar h2 {
-            text-align: center;
-            padding: 15px;
-            font-size: 22px;
-            background: #401b65;
-            margin-bottom: 10px;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            padding: 15px;
-            cursor: pointer;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid #472e67;
-            transition: background 0.3s;
-            font-size: 16px;
-        }
-        .sidebar ul li:hover, .sidebar ul li.active {
-            background: #573c89;
-            color: white;
-        }
-        .main-content {
-            margin-left: 0;
-            padding: 20px;
-            transition: margin-left 0.3s ease-in-out;
-            width: 100%;
-        }
-        .sidebar.active + .main-content {
-            margin-left: 280px;
-        }
-        .hidden {
-            display: none;
-        }
-        .content-section {
-            padding: 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-            width: 80%;
-            margin: 60px auto 20px;
-        }
-        .content-section h1, .content-section p {
-            text-align: center;
-        }
-        @media screen and (max-width: 768px) {
-            .sidebar {
-                left: -280px;
-            }
-            .sidebar.active {
-                left: 0;
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .sidebar.active + .main-content {
-                margin-left: 0;
-            }
-        }
-    </style>
-    <script>
-        function toggleSidebar() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        }
-        function showSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            document.getElementById(sectionId).style.display = 'block';
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineer Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9966, #6600cc);
+      color: black;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .header, .footer {
+      height: 10px;
+      width: 100%;
+      background: linear-gradient(to right, orange, red, purple, blue);
+    }
+    .logo-bar {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .logo-bar img { height: 40px; }
+    .dashboard-container {
+      display: flex;
+      flex: 1;
+    }
+    .sidebar {
+      width: 220px;
+      background-color: #2d1a4a;
+      color: white;
+      height: calc(100vh - 80px);
+      padding-top: 20px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      padding: 15px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #472e67;
+    }
+    .sidebar li:hover, .sidebar li.active {
+      background-color: #402a65;
+    }
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    select, button {
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .green { color: green; }
+    .amber { color: orange; }
+    .red { color: red; }
+  </style>
 </head>
-<body>
-    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-    <div class="sidebar">
-        <h2>Engineer</h2>
-        <ul>
-            <li onclick="showSection('dashboard')">Dashboard</li>
-            <li onclick="showSection('votingSection')">Health Check</li>
-            <li onclick="showSection('tasksSection')">Daily Tasks</li>
-            <li onclick="showSection('completedTasks')">Completed Tasks</li>
-        </ul>
+<body onload="showSection('dashboard')">
+  <div class="header"></div>
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+
+  <div class="dashboard-container">
+    <div class="sidebar" id="sidebar">
+      <h2 style="text-align: center; padding: 10px 0;">Engineer</h2>
+      <ul>
+        <li onclick="showSection('dashboard')">Dashboard</li>
+        <li onclick="showSection('vote')">Health Check</li>
+        <li onclick="showSection('session')">Select Session</li>
+        <li onclick="showSection('team')">Select Team</li>
+        <li onclick="showSection('summary')">View My Team Summary</li>
+        <li onclick="showSection('progress')">View My Progress</li>
+      </ul>
     </div>
-    <div class="main-content">
-        <div id="dashboard" class="content-section">
-            <h1>Welcome, Engineer</h1>
-            <p>Manage your daily tasks and health check</p>
-        </div>
-        <div id="votingSection" class="content-section hidden">
-            <h2>Health Check Voting</h2>
-            <form>
-                <label>Support:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Teamwork:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Pawns or Players:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Mission:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Health of Codebase:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Suitable Process:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Delivering Value:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Learning:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Speed:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Easy to Release:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                    <label>Fun:</label>
-                    <select>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber</option>
-                        <option value="red">Red</option>
-                    </select>
-                <button type="submit">Save Vote</button>
-            </form>
-        </div>
-        <div id="tasksSection" class="content-section hidden">
-            <h2>Daily Tasks</h2>
-            <p>Here you can manage your daily tasks.</p>
-        </div>
-        <div id="completedTasks" class="content-section hidden">
-            <h2>Completed Tasks</h2>
-            <p>Review your completed tasks.</p>
-        </div>
+
+    <div class="main-content" id="mainContent">
+      <div id="dashboard" class="content-section active">
+        <h1>Welcome, Engineer</h1>
+        <p>Manage your daily tasks and health check</p>
+      </div>
+
+      <div id="vote" class="content-section">
+        <h2>Health Check Voting</h2>
+        <form>
+          <table class="voting-table">
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th class="green">Green</th>
+                <th class="amber">Amber</th>
+                <th class="red">Red</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Support</td><td><input type="radio" name="support"></td><td><input type="radio" name="support"></td><td><input type="radio" name="support"></td></tr>
+              <tr><td>Teamwork</td><td><input type="radio" name="teamwork"></td><td><input type="radio" name="teamwork"></td><td><input type="radio" name="teamwork"></td></tr>
+              <tr><td>Pawns or Players</td><td><input type="radio" name="pawns"></td><td><input type="radio" name="pawns"></td><td><input type="radio" name="pawns"></td></tr>
+              <tr><td>Mission</td><td><input type="radio" name="mission"></td><td><input type="radio" name="mission"></td><td><input type="radio" name="mission"></td></tr>
+              <tr><td>Health of Codebase</td><td><input type="radio" name="codebase"></td><td><input type="radio" name="codebase"></td><td><input type="radio" name="codebase"></td></tr>
+              <tr><td>Suitable Process</td><td><input type="radio" name="process"></td><td><input type="radio" name="process"></td><td><input type="radio" name="process"></td></tr>
+              <tr><td>Delivering Value</td><td><input type="radio" name="value"></td><td><input type="radio" name="value"></td><td><input type="radio" name="value"></td></tr>
+              <tr><td>Learning</td><td><input type="radio" name="learning"></td><td><input type="radio" name="learning"></td><td><input type="radio" name="learning"></td></tr>
+              <tr><td>Speed</td><td><input type="radio" name="speed"></td><td><input type="radio" name="speed"></td><td><input type="radio" name="speed"></td></tr>
+              <tr><td>Easy to Release</td><td><input type="radio" name="release"></td><td><input type="radio" name="release"></td><td><input type="radio" name="release"></td></tr>
+              <tr><td>Fun</td><td><input type="radio" name="fun"></td><td><input type="radio" name="fun"></td><td><input type="radio" name="fun"></td></tr>
+            </tbody>
+          </table>
+          <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" style="padding: 10px 20px; font-size: 16px;">Save Vote</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="session" class="content-section">
+        <h2>Select Session</h2>
+        <label for="session">Choose a session:</label>
+        <select id="session">
+          <option>Session 1</option>
+          <option>Session 2</option>
+          <option>Session 3</option>
+        </select>
+      </div>
+
+      <div id="team" class="content-section">
+        <h2>Select Team</h2>
+        <label for="teamSelect">Choose your team:</label>
+        <select id="teamSelect">
+          <option>Team A</option>
+          <option>Team B</option>
+          <option>Team C</option>
+        </select>
+      </div>
+
+      <div id="summary" class="content-section">
+        <h2>View My Team Summary</h2>
+        <table>
+          <thead>
+            <tr><th>Card</th><th>Average Vote</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Support</td><td class="amber">Amber</td></tr>
+            <tr><td>Teamwork</td><td class="green">Green</td></tr>
+            <tr><td>Fun</td><td class="red">Red</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="progress" class="content-section">
+        <h2>View My Progress</h2>
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Support</th><th>Teamwork</th><th>Fun</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2024-03-01</td><td class="green">Green</td><td class="amber">Amber</td><td class="green">Green</td></tr>
+            <tr><td>2024-03-08</td><td class="amber">Amber</td><td class="green">Green</td><td class="amber">Amber</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+
+  <div class="logo-bar">
+    <img src="images/sky-logo.png" alt="Sky Logo">
+  </div>
+  <div class="footer"></div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('mainContent');
+      sidebar.classList.toggle('closed');
+      mainContent.classList.toggle('full-width');
+    }
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      const selectedSection = document.getElementById(sectionId);
+      if (selectedSection) {
+        selectedSection.classList.add('active');
+      }
+    }
+  </script>
 </body>
 </html>
